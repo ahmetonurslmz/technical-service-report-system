@@ -43,7 +43,7 @@
             this.lblProductDate = new System.Windows.Forms.Label();
             this.txtProductCost = new System.Windows.Forms.MaskedTextBox();
             this.lblProductCost = new System.Windows.Forms.Label();
-            this.cmdProductModel = new System.Windows.Forms.ComboBox();
+            this.cmbProductModel = new System.Windows.Forms.ComboBox();
             this.lblProductModel = new System.Windows.Forms.Label();
             this.cmbProductBrand = new System.Windows.Forms.ComboBox();
             this.lblProductBrand = new System.Windows.Forms.Label();
@@ -172,7 +172,7 @@
             this.groupBox2.Controls.Add(this.lblProductDate);
             this.groupBox2.Controls.Add(this.txtProductCost);
             this.groupBox2.Controls.Add(this.lblProductCost);
-            this.groupBox2.Controls.Add(this.cmdProductModel);
+            this.groupBox2.Controls.Add(this.cmbProductModel);
             this.groupBox2.Controls.Add(this.lblProductModel);
             this.groupBox2.Controls.Add(this.cmbProductBrand);
             this.groupBox2.Controls.Add(this.lblProductBrand);
@@ -220,13 +220,13 @@
             this.lblProductCost.TabIndex = 12;
             this.lblProductCost.Text = "Estimated Cost*:";
             // 
-            // cmdProductModel
+            // cmbProductModel
             // 
-            this.cmdProductModel.FormattingEnabled = true;
-            this.cmdProductModel.Location = new System.Drawing.Point(148, 86);
-            this.cmdProductModel.Name = "cmdProductModel";
-            this.cmdProductModel.Size = new System.Drawing.Size(234, 22);
-            this.cmdProductModel.TabIndex = 11;
+            this.cmbProductModel.FormattingEnabled = true;
+            this.cmbProductModel.Location = new System.Drawing.Point(148, 86);
+            this.cmbProductModel.Name = "cmbProductModel";
+            this.cmbProductModel.Size = new System.Drawing.Size(234, 22);
+            this.cmbProductModel.TabIndex = 11;
             // 
             // lblProductModel
             // 
@@ -245,6 +245,7 @@
             this.cmbProductBrand.Name = "cmbProductBrand";
             this.cmbProductBrand.Size = new System.Drawing.Size(234, 22);
             this.cmbProductBrand.TabIndex = 9;
+            this.cmbProductBrand.SelectedValueChanged += new System.EventHandler(this.cmbProductBrand_SelectedValueChanged);
             // 
             // lblProductBrand
             // 
@@ -448,7 +449,7 @@
         private System.Windows.Forms.Label lblProductDate;
         private System.Windows.Forms.MaskedTextBox txtProductCost;
         private System.Windows.Forms.Label lblProductCost;
-        private System.Windows.Forms.ComboBox cmdProductModel;
+        private System.Windows.Forms.ComboBox cmbProductModel;
         private System.Windows.Forms.Label lblProductModel;
         private System.Windows.Forms.ComboBox cmbProductBrand;
         private System.Windows.Forms.Label lblProductBrand;
