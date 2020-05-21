@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +10,11 @@ using System.Windows.Forms;
 
 namespace technical_service_report_system
 {
-    public partial class lblCustomerPhoneNumber : Form
+    public partial class UserControl1 : UserControl
     {
-        public lblCustomerPhoneNumber()
+        public UserControl1()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
         }
     }
 }
