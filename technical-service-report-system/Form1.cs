@@ -164,7 +164,7 @@ namespace technical_service_report_system
 
         private void cmbProductBrand_SelectedValueChanged(object sender, EventArgs e)
         {
-
+            fetchModels(((KeyValuePair<int, string>)cmbProductBrand.SelectedItem).Key);
         }
     }
 }
