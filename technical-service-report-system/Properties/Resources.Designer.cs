@@ -59,15 +59,5 @@ namespace technical_service_report_system.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _690x390_Tech_Support_Hero {
-            get {
-                object obj = ResourceManager.GetObject("690x390 Tech Support Hero", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }
