@@ -87,16 +87,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlDashboard = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.lblPendingCount = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblCancelledCount = new System.Windows.Forms.Label();
             this.lblInProgressCount = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblDoneCount = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblCancelledCount = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCreateTicket.SuspendLayout();
@@ -142,14 +144,14 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.E)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // refreshToolStripMenuItem
             // 
             this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.refreshToolStripMenuItem.Text = "Refresh";
             // 
             // statusStrip1
@@ -731,11 +733,41 @@
             // pnlDashboard
             // 
             this.pnlDashboard.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDashboard.Controls.Add(this.label11);
+            this.pnlDashboard.Controls.Add(this.label13);
             this.pnlDashboard.Controls.Add(this.panel1);
             this.pnlDashboard.Location = new System.Drawing.Point(110, 31);
             this.pnlDashboard.Name = "pnlDashboard";
             this.pnlDashboard.Size = new System.Drawing.Size(1075, 537);
             this.pnlDashboard.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.lblPendingCount);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.lblCancelledCount);
+            this.panel1.Controls.Add(this.lblInProgressCount);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.label8);
+            this.panel1.Controls.Add(this.lblDoneCount);
+            this.panel1.Location = new System.Drawing.Point(621, 81);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(333, 389);
+            this.panel1.TabIndex = 9;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Roboto Cn", 20.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label12.Location = new System.Drawing.Point(23, 19);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(198, 33);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Tickets By Status";
             // 
             // lblPendingCount
             // 
@@ -747,6 +779,16 @@
             this.lblPendingCount.TabIndex = 0;
             this.lblPendingCount.Text = "0";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label10.Location = new System.Drawing.Point(65, 266);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(194, 29);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Cancelled Tickets";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -757,15 +799,15 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "Pending Tickets";
             // 
-            // label8
+            // lblCancelledCount
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label8.Location = new System.Drawing.Point(65, 147);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(212, 29);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "In Progress Tickets";
+            this.lblCancelledCount.AutoSize = true;
+            this.lblCancelledCount.Font = new System.Drawing.Font("Roboto Bk", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblCancelledCount.Location = new System.Drawing.Point(18, 250);
+            this.lblCancelledCount.Name = "lblCancelledCount";
+            this.lblCancelledCount.Size = new System.Drawing.Size(53, 58);
+            this.lblCancelledCount.TabIndex = 6;
+            this.lblCancelledCount.Text = "0";
             // 
             // lblInProgressCount
             // 
@@ -787,6 +829,16 @@
             this.label9.TabIndex = 5;
             this.label9.Text = "Done Tickets";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label8.Location = new System.Drawing.Point(65, 147);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(212, 29);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "In Progress Tickets";
+            // 
             // lblDoneCount
             // 
             this.lblDoneCount.AutoSize = true;
@@ -797,52 +849,25 @@
             this.lblDoneCount.TabIndex = 4;
             this.lblDoneCount.Text = "0";
             // 
-            // label10
+            // label13
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label10.Location = new System.Drawing.Point(65, 266);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(194, 29);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Cancelled Tickets";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Roboto Bk", 27.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label13.Location = new System.Drawing.Point(87, 187);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(183, 44);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Welcome!";
             // 
-            // lblCancelledCount
+            // label11
             // 
-            this.lblCancelledCount.AutoSize = true;
-            this.lblCancelledCount.Font = new System.Drawing.Font("Roboto Bk", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.lblCancelledCount.Location = new System.Drawing.Point(18, 250);
-            this.lblCancelledCount.Name = "lblCancelledCount";
-            this.lblCancelledCount.Size = new System.Drawing.Size(53, 58);
-            this.lblCancelledCount.TabIndex = 6;
-            this.lblCancelledCount.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Roboto Cn", 24F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label12.Location = new System.Drawing.Point(23, 19);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(236, 38);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "Tickets By Status";
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.lblPendingCount);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.lblCancelledCount);
-            this.panel1.Controls.Add(this.lblInProgressCount);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.lblDoneCount);
-            this.panel1.Location = new System.Drawing.Point(60, 34);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(527, 474);
-            this.panel1.TabIndex = 9;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Roboto Cn", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label11.Location = new System.Drawing.Point(90, 235);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(320, 25);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "to the Phone Technical Service App...";
             // 
             // lblCustomerPhoneNumber
             // 
@@ -859,7 +884,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "lblCustomerPhoneNumber";
-            this.Text = "Form1";
+            this.Text = "Phone Technical Service App";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -886,6 +911,7 @@
             this.grpDescription.ResumeLayout(false);
             this.grpDescription.PerformLayout();
             this.pnlDashboard.ResumeLayout(false);
+            this.pnlDashboard.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -964,6 +990,8 @@
         private System.Windows.Forms.Label lblCancelledCount;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
     }
 }
 
