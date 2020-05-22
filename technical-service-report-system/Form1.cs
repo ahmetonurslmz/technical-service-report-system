@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace technical_service_report_system
 {
@@ -14,9 +15,15 @@ namespace technical_service_report_system
     {
         ProductBrands productBrands;
         ProductModels productModels;
+        Tickets tickets;
+        BindingSource binder = new BindingSource();
+        string FileName = "";
+
         public lblCustomerPhoneNumber()
         {
             InitializeComponent();
+            pnlCreateTicket.Visible = false;
+            pnlTickets.Visible = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,13 +36,13 @@ namespace technical_service_report_system
             string customerFullName;
             string customerEmail;
             string customerPhoneNumber;
+            string ticketDescription = "";
 
             int productBrandId;
             int productModelId;
             int productEstimatedCost;
             DateTime productEstimatedDate;
 
-            string ticketDescription;
 
             try
             {
@@ -114,6 +121,17 @@ namespace technical_service_report_system
                 {
                     ticketDescription = rTxtTicketDescription.Text.ToString();
                 }
+                string imageName = "";
+                if (FileName.Length != 0)
+                {
+                    imageName = SaveImage();
+                }
+                tickets = new Tickets();
+                Boolean result = tickets.create(customerFullName, customerEmail, customerPhoneNumber, imageName, productEstimatedDate, productEstimatedCost, productModelId, ticketDescription);
+                if (result)
+                {
+                    goTicketsPage();
+                }
             }
             catch (Exception error)
             {
@@ -123,7 +141,6 @@ namespace technical_service_report_system
 
         public void fetchBrands()
         {
-            // fetch Current Stocks
             productBrands = new ProductBrands();
             DataSet data_set = productBrands.fetch();
             int count = data_set.Tables[0].Rows.Count;
@@ -165,6 +182,66 @@ namespace technical_service_report_system
         private void cmbProductBrand_SelectedValueChanged(object sender, EventArgs e)
         {
             fetchModels(((KeyValuePair<int, string>)cmbProductBrand.SelectedItem).Key);
+        }
+
+
+        private void goTicketsPage()
+        {
+            pnlCreateTicket.Visible = false;
+            pnlTickets.Visible = true;
+            fetchTickets();
+        }
+
+        private void fetchTickets()
+        {
+            tickets = new Tickets();
+            DataTable salesTable = tickets.fetch();
+            binder.DataSource = salesTable;
+            dgvTickets.DataSource = binder;
+        }
+
+        private void btnMenuCreateTicket_Click(object sender, EventArgs e)
+        {
+            pnlCreateTicket.Visible = true;
+            pnlTickets.Visible = false;
+        }
+
+        private void btnMenuTickets_Click(object sender, EventArgs e)
+        {
+            goTicketsPage();
+        }
+
+        private void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Select an Image";
+            dlg.Filter = "First Selection |*.jpg| Second Selection |*.png| All Files |*.*";
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pctProductImage.Image = new Bitmap(dlg.OpenFile());
+                    FileName = dlg.FileName;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("You have to select image", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            dlg.Dispose();
+        }
+
+        private string SaveImage()
+        {
+            if (FileName.Length != 0)
+            {
+                string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+                File.Copy(FileName, Path.Combine(@projectPath + @"\Resources\img\", Path.GetFileName(FileName)), true);
+                return Path.GetFileName(FileName);
+            }
+            return "";
         }
     }
 }

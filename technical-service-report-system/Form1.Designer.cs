@@ -36,6 +36,9 @@
             this.pnlCreateTicket = new System.Windows.Forms.Panel();
             this.btnCreateTicket = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pctProductImage = new System.Windows.Forms.PictureBox();
+            this.btnUploadImage = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rTxtTicketDescription = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -54,19 +57,23 @@
             this.lblCustomerEmail = new System.Windows.Forms.Label();
             this.txtCustomerFullName = new System.Windows.Forms.TextBox();
             this.lblCustomerFullName = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnMenuTickets = new System.Windows.Forms.Button();
+            this.btnMenuCreateTicket = new System.Windows.Forms.Button();
+            this.btnMenuHomePage = new System.Windows.Forms.Button();
+            this.pnlTickets = new System.Windows.Forms.Panel();
+            this.dgvTickets = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.pnlCreateTicket.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctProductImage)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlMenu.SuspendLayout();
+            this.pnlTickets.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTickets)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -141,12 +148,45 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.pctProductImage);
+            this.groupBox4.Controls.Add(this.btnUploadImage);
             this.groupBox4.Location = new System.Drawing.Point(6, 367);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(812, 122);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Location = new System.Drawing.Point(106, 106);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Allowed Extensions: PNG, JPG, JPEG";
+            // 
+            // pctProductImage
+            // 
+            this.pctProductImage.Location = new System.Drawing.Point(512, 9);
+            this.pctProductImage.Name = "pctProductImage";
+            this.pctProductImage.Size = new System.Drawing.Size(235, 113);
+            this.pctProductImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pctProductImage.TabIndex = 1;
+            this.pctProductImage.TabStop = false;
+            // 
+            // btnUploadImage
+            // 
+            this.btnUploadImage.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnUploadImage.Location = new System.Drawing.Point(109, 21);
+            this.btnUploadImage.Name = "btnUploadImage";
+            this.btnUploadImage.Size = new System.Drawing.Size(293, 82);
+            this.btnUploadImage.TabIndex = 0;
+            this.btnUploadImage.Text = "Upload Image";
+            this.btnUploadImage.UseVisualStyleBackColor = true;
+            this.btnUploadImage.Click += new System.EventHandler(this.btnUploadImage_Click);
             // 
             // groupBox3
             // 
@@ -328,75 +368,71 @@
             this.lblCustomerFullName.TabIndex = 5;
             this.lblCustomerFullName.Text = "Full Name*:";
             // 
-            // panel1
+            // pnlMenu
             // 
-            this.panel1.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
-            this.panel1.Location = new System.Drawing.Point(0, 31);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(107, 540);
-            this.panel1.TabIndex = 3;
+            this.pnlMenu.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.pnlMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlMenu.Controls.Add(this.btnMenuTickets);
+            this.pnlMenu.Controls.Add(this.btnMenuCreateTicket);
+            this.pnlMenu.Controls.Add(this.btnMenuHomePage);
+            this.pnlMenu.ImeMode = System.Windows.Forms.ImeMode.Hiragana;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 31);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(107, 540);
+            this.pnlMenu.TabIndex = 3;
             // 
-            // button5
+            // btnMenuTickets
             // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button5.Location = new System.Drawing.Point(-1, 223);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(107, 32);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Models";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnMenuTickets.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnMenuTickets.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnMenuTickets.Location = new System.Drawing.Point(-1, 111);
+            this.btnMenuTickets.Name = "btnMenuTickets";
+            this.btnMenuTickets.Size = new System.Drawing.Size(107, 32);
+            this.btnMenuTickets.TabIndex = 2;
+            this.btnMenuTickets.Text = "Tickets";
+            this.btnMenuTickets.UseVisualStyleBackColor = true;
+            this.btnMenuTickets.Click += new System.EventHandler(this.btnMenuTickets_Click);
             // 
-            // button4
+            // btnMenuCreateTicket
             // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button4.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button4.Location = new System.Drawing.Point(-1, 167);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(107, 32);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Brands";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnMenuCreateTicket.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnMenuCreateTicket.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnMenuCreateTicket.Location = new System.Drawing.Point(-1, 55);
+            this.btnMenuCreateTicket.Name = "btnMenuCreateTicket";
+            this.btnMenuCreateTicket.Size = new System.Drawing.Size(107, 32);
+            this.btnMenuCreateTicket.TabIndex = 1;
+            this.btnMenuCreateTicket.Text = "Create Ticket";
+            this.btnMenuCreateTicket.UseVisualStyleBackColor = true;
+            this.btnMenuCreateTicket.Click += new System.EventHandler(this.btnMenuCreateTicket_Click);
             // 
-            // button3
+            // btnMenuHomePage
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button3.Location = new System.Drawing.Point(-1, 111);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 32);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Tickets";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnMenuHomePage.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnMenuHomePage.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnMenuHomePage.Location = new System.Drawing.Point(-1, -1);
+            this.btnMenuHomePage.Name = "btnMenuHomePage";
+            this.btnMenuHomePage.Size = new System.Drawing.Size(107, 32);
+            this.btnMenuHomePage.TabIndex = 0;
+            this.btnMenuHomePage.Text = "Homepage";
+            this.btnMenuHomePage.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // pnlTickets
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button2.Location = new System.Drawing.Point(-1, 55);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 32);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Create Ticket";
-            this.button2.UseVisualStyleBackColor = true;
+            this.pnlTickets.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTickets.Controls.Add(this.dgvTickets);
+            this.pnlTickets.ForeColor = System.Drawing.Color.Black;
+            this.pnlTickets.Location = new System.Drawing.Point(991, 27);
+            this.pnlTickets.Name = "pnlTickets";
+            this.pnlTickets.Size = new System.Drawing.Size(825, 540);
+            this.pnlTickets.TabIndex = 4;
             // 
-            // button1
+            // dgvTickets
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(-1, -1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 32);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Homepage";
-            this.button1.UseVisualStyleBackColor = true;
+            this.dgvTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTickets.Location = new System.Drawing.Point(19, 17);
+            this.dgvTickets.Name = "dgvTickets";
+            this.dgvTickets.Size = new System.Drawing.Size(784, 269);
+            this.dgvTickets.TabIndex = 0;
             // 
             // lblCustomerPhoneNumber
             // 
@@ -405,7 +441,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1556, 596);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlTickets);
+            this.Controls.Add(this.pnlMenu);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -420,12 +457,17 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.pnlCreateTicket.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pctProductImage)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
+            this.pnlMenu.ResumeLayout(false);
+            this.pnlTickets.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTickets)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -459,12 +501,15 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnCreateTicket;
         private System.Windows.Forms.TextBox txtCustomerEmail;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Button btnMenuTickets;
+        private System.Windows.Forms.Button btnMenuCreateTicket;
+        private System.Windows.Forms.Button btnMenuHomePage;
+        private System.Windows.Forms.Panel pnlTickets;
+        private System.Windows.Forms.DataGridView dgvTickets;
+        private System.Windows.Forms.PictureBox pctProductImage;
+        private System.Windows.Forms.Button btnUploadImage;
+        private System.Windows.Forms.Label label1;
     }
 }
 
