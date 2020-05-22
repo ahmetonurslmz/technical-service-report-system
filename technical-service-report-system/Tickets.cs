@@ -55,5 +55,47 @@ namespace technical_service_report_system
 
             return true;
         }
+
+        public Boolean update(int ticket_id, int status_id)
+        {
+            SqlCommand cmd = new SqlCommand("PupdateTicket", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TicketId", ticket_id);
+            cmd.Parameters.AddWithValue("@TicketStatus", status_id);
+
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet cmd_data_set = new DataSet();
+            sqlDa.Fill(cmd_data_set);
+
+            return true;
+        }
+
+        public Boolean delete(int ticket_id)
+        {
+            SqlCommand cmd = new SqlCommand("PdeleteTicket", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TicketId", ticket_id);
+
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataSet cmd_data_set = new DataSet();
+            sqlDa.Fill(cmd_data_set);
+
+            return true;
+        }
+
+        public int getCountTicketsByStatus(int status_id)
+        {
+            SqlCommand cmd = new SqlCommand("PfetchTicketsByStatus", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@TicketStatus", status_id);
+
+            SqlDataAdapter sqlDa = new SqlDataAdapter(cmd);
+            DataTable data_table = new DataTable();
+            sqlDa.Fill(data_table);
+
+            return Convert.ToInt32(data_table.Rows.Count.ToString());
+        }
     }
 }

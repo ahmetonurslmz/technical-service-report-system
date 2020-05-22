@@ -18,12 +18,15 @@ namespace technical_service_report_system
         Tickets tickets;
         BindingSource binder = new BindingSource();
         string FileName = "";
+        DataGridViewRow Selected;
+        int selectedRowIndex;
 
         public lblCustomerPhoneNumber()
         {
             InitializeComponent();
             pnlCreateTicket.Visible = false;
             pnlTickets.Visible = false;
+            fetchDashboardData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -130,6 +133,7 @@ namespace technical_service_report_system
                 Boolean result = tickets.create(customerFullName, customerEmail, customerPhoneNumber, imageName, productEstimatedDate, productEstimatedCost, productModelId, ticketDescription);
                 if (result)
                 {
+                    clearCreateTicketForm();
                     goTicketsPage();
                 }
             }
@@ -158,6 +162,29 @@ namespace technical_service_report_system
 
             DataRow first = data_set.Tables[0].Rows[0];
             fetchModels(Convert.ToInt32(first.ItemArray.GetValue(0).ToString()));
+        }
+
+        public void clearCreateTicketForm()
+        {
+            txtCustomerFullName.Text = "";
+            txtCustomerEmail.Text = "";
+            txtCustomerPhoneNumber.Text = null;
+            txtProductCost.Text = null;
+            rTxtTicketDescription.Text = "";
+            if (pctProductImage.Image != null)
+            {
+                pctProductImage.Image.Dispose();
+                pctProductImage.Image = null;
+            }
+        }
+
+        public void fetchDashboardData()
+        {
+            tickets = new Tickets();
+            lblPendingCount.Text = tickets.getCountTicketsByStatus(1).ToString();
+            lblInProgressCount.Text = tickets.getCountTicketsByStatus(2).ToString();
+            lblDoneCount.Text = tickets.getCountTicketsByStatus(3).ToString();
+            lblCancelledCount.Text = tickets.getCountTicketsByStatus(4).ToString();
         }
 
 
@@ -189,26 +216,47 @@ namespace technical_service_report_system
         {
             pnlCreateTicket.Visible = false;
             pnlTickets.Visible = true;
+            grpUpdateTicket.Visible = false;
             fetchTickets();
         }
 
         private void fetchTickets()
         {
+
             tickets = new Tickets();
             DataTable salesTable = tickets.fetch();
             binder.DataSource = salesTable;
             dgvTickets.DataSource = binder;
+
+            dgvTickets.Columns[0].HeaderText = "ID";
+            dgvTickets.Columns[1].HeaderText = "Full Name";
+            dgvTickets.Columns[2].HeaderText = "Email";
+            dgvTickets.Columns[3].HeaderText = "Phone Number";
+            dgvTickets.Columns[4].Visible = false;
+            dgvTickets.Columns[5].HeaderText = "Delivery Date";
+            dgvTickets.Columns[6].HeaderText = "Cost";
+            dgvTickets.Columns[7].HeaderText = "Description";
+            dgvTickets.Columns[8].HeaderText = "P. Model";
+            dgvTickets.Columns[9].HeaderText = "P. Brand";
+            dgvTickets.Columns[10].HeaderText = "Status";
+            dgvTickets.Columns[11].Visible = false; // Status ID
         }
 
         private void btnMenuCreateTicket_Click(object sender, EventArgs e)
         {
             pnlCreateTicket.Visible = true;
             pnlTickets.Visible = false;
+            pnlDashboard.Visible = false;
+            toolStripStatusLabel1.Text = "Create Ticket";
         }
 
         private void btnMenuTickets_Click(object sender, EventArgs e)
         {
             goTicketsPage();
+            pnlDashboard.Visible = false;
+            pnlCreateTicket.Visible = false;
+            pnlTickets.Visible = true;
+            toolStripStatusLabel1.Text = "Tickets";
         }
 
         private void btnUploadImage_Click(object sender, EventArgs e)
@@ -237,11 +285,124 @@ namespace technical_service_report_system
         {
             if (FileName.Length != 0)
             {
-                string projectPath = Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
-                File.Copy(FileName, Path.Combine(@projectPath + @"\Resources\img\", Path.GetFileName(FileName)), true);
+                File.Copy(FileName, Path.Combine(@getProjectPath() + @"\Resources\img\", Path.GetFileName(FileName)), true);
                 return Path.GetFileName(FileName);
             }
             return "";
+        }
+
+        private string getProjectPath()
+        {
+            return Path.GetDirectoryName(Path.GetDirectoryName(System.IO.Directory.GetCurrentDirectory()));
+        }
+
+        private void dgvTickets_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Console.WriteLine(e.RowIndex);
+            grpUpdateTicket.Visible = true;
+            DataGridViewRow selectedRow = dgvTickets.Rows[e.RowIndex];
+            selectedRowIndex = e.RowIndex;
+            fillTicketCard(selectedRow);
+        }
+
+        private void fillTicketCard(DataGridViewRow selectedRow)
+        {
+            lblUpdateFullName.Text = selectedRow.Cells[1].Value.ToString();
+            lblUpdateEmail.Text = selectedRow.Cells[2].Value.ToString();
+            lblUpdatePNumber.Text = selectedRow.Cells[3].Value.ToString();
+            lblUpdateDeliveryDate.Text = selectedRow.Cells[5].Value.ToString();
+            lblUpdateCost.Text = "$" + selectedRow.Cells[6].Value.ToString();
+            if (selectedRow.Cells[7].Value.ToString().Length != 0)
+            {
+                grpDescription.Visible = true;
+                lblUpdateDescription.Text = selectedRow.Cells[7].Value.ToString();
+            }
+            lblUpdateTicketStatus.Text = selectedRow.Cells[10].Value.ToString();
+
+            int progressValue = Convert.ToInt32(selectedRow.Cells[11].Value.ToString());
+
+            if (Convert.ToInt32(selectedRow.Cells[11].Value.ToString()) != 4)
+            {
+                progressTicket.Visible = true;
+                progressTicket.Value = progressValue;
+            } else
+            {
+                progressTicket.Visible = false;
+            }
+
+
+            if (progressValue == 1)
+            {
+                btnProceed.Text = "Proceed";
+                btnProceed.Visible = true;
+                btnCancel.Visible = true;
+            }
+            else if (progressValue == 2)
+            {
+                btnProceed.Visible = true;
+                btnCancel.Visible = true;
+                btnProceed.Text = "Done";
+            }
+            else if (progressValue == 3 || progressValue == 4)
+            {
+                btnProceed.Visible = false;
+                btnCancel.Visible = false;
+            }
+
+            Selected = selectedRow;
+            if (selectedRow.Cells[4].Value.ToString().Length != 0)
+            {
+                string path = @getProjectPath() + @"\Resources\img\" + selectedRow.Cells[4].Value.ToString();
+
+                pctUpdateImage.Load(path);
+            }
+        }
+
+        private void btnProceed_Click(object sender, EventArgs e)
+        {
+            ChangeStatus(Convert.ToInt32(Selected.Cells[11].Value.ToString()) + 1);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ChangeStatus(4);
+        }
+
+        private void ChangeStatus(int status)
+        {
+            tickets = new Tickets();
+            Boolean result = tickets.update(Convert.ToInt32(Selected.Cells[0].Value.ToString()), status);
+            if (result)
+            {
+                fetchTickets();
+                DataGridViewRow selectedRow = dgvTickets.Rows[selectedRowIndex];
+                fillTicketCard(selectedRow);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            tickets = new Tickets();
+            Boolean result = tickets.delete(Convert.ToInt32(Selected.Cells[0].Value.ToString()));
+            if (result)
+            {
+                fetchTickets();
+                grpUpdateTicket.Visible = false;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnMenuDashboard_Click_1(object sender, EventArgs e)
+        {
+            pnlCreateTicket.Visible = false;
+            pnlTickets.Visible = false;
+            pnlDashboard.Visible = true;
+            toolStripStatusLabel1.Text = "Dashboard";
+            fetchDashboardData();
         }
     }
 }
